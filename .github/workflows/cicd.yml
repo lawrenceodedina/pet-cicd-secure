@@ -138,7 +138,7 @@ jobs:
           sonar-token: ${{ env.SONAR_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           branch: dev
-          fail-on-quality-gate-error: false
+          fail-on-quality-gate-error: true
 
   trivy-scan:
     name: Trivy Security Scan
@@ -167,7 +167,7 @@ jobs:
           path: target
  
       - name: Run Trivy filesystem scan
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: 'fs'
           scan-ref: '.'
