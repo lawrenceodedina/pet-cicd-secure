@@ -90,7 +90,7 @@ jobs:
           name: surefire-reports
           path: target/surefire-reports/
           if-no-files-found: ignore
-          
+
   sonarQube-scan:
     name: SonarQube-Scan
     runs-on: ubuntu-latest
@@ -138,4 +138,4 @@ jobs:
           sonar-token: ${{ env.SONAR_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           branch: dev
-          fail-on–quality-gate-error: true
+          fail-on-quality-gate-error: true
