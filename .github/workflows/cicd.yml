@@ -277,14 +277,9 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
  
       - name: Scan image with Trivy
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: |
-            ${{ steps.login-ecr.outputs.registry }}/\
-            $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          image-ref: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
           format: table
           exit-code: '0'
           severity: CRITICAL,HIGH
